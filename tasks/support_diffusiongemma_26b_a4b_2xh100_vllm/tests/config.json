@@ -3463,7 +3463,7 @@
    }
   ],
   "gpus": 2,
-  "gpu_name": "H100",
+  "gpu_name": "H200",
   "gpu_min_total_gib": 79,
   "gpu_min_free_fraction": 0.9,
   "shm_min_gib": 16,

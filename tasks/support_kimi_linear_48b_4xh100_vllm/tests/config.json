@@ -369,7 +369,7 @@
       "The upstream L0 node's id is PARAMETRIZED BY THE REGISTRY: test.patch carries the reference's three-line tests/models/registry.py entry, which is what makes test_can_initialize_large_subset[KimiLinearForCausalLM] exist as a parametrization at all. It passes the inferability rule because it names only public-contract symbols -- the architecture string, the repository id and trust_remote_code."
     ],
     "gpus": 8,
-    "gpu_name": "H100",
+    "gpu_name": "H200",
     "gpu_min_total_gib": 78,
     "gpu_min_free_fraction": 0.9,
     "gpu_floor_note": "78 GiB. MEASURED on the declared hardware: torch reports total_memory 85,017,493,504 B = 79.18 GiB on these H100 80GB HBM3 cards, so a 79 GiB floor would leave only 0.18 GiB of margin. A preflight failure writes the -1 sentinel, so a floor a legitimate H100 can fall under voids trials instead of scoring them; the floor's job is to separate an 80 GB H100 from the 40 GB and 94 GB NVL parts, which 78 does with real margin.",
