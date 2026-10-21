@@ -332,3 +332,8 @@ RUN /opt/vllm/bin/python /opt/infb/l3/fetch_l3_hf.py /opt/infb/l3/l3-hf-manifest
 RUN python3 /tests/infb_efficiency/snapshot.py --config /tests/config.json
 RUN /opt/vllm/bin/python /tests/eval/diffusion_gemma/run.py gencfg --out /opt/infb/gencfg --output /tmp/gencfg.json \
     && test -f /opt/infb/gencfg/tp1_fixed/generation_config.json && test -f /opt/infb/gencfg/tp2_fixed/generation_config.json
+# Fork (H200): the verifier serves with the memory budget an 80 GB H100 gives at 0.85, so the KV pool and
+# everything sized against it (test_preemption_resume's calibrated load) match the H100 calibration.
+# 0.85 x 81,559 MiB (H100) / 143,771 MiB (H200) = 0.4822. Only the verifier's copy changes; /app is untouched.
+RUN sed -i 's/"--gpu-memory-utilization", "0.85"/"--gpu-memory-utilization", "0.4822"/' /tests/eval/diffusion_gemma/serving/recipes.py \
+    && grep -q '"--gpu-memory-utilization", "0.4822"' /tests/eval/diffusion_gemma/serving/recipes.py
